@@ -1,0 +1,14 @@
+{% extends 'base_layout.html' %}
+<!-- Extendemos del base layout para ahorrar codigo -->
+{% block content%}
+<div class = "form">
+    <h2>Registrarse</h2>
+    <!-- Imprimimos el formulario para registrar un usuario que nos servira
+    para posteriormente guardar los datos -->
+    <form class="site-form" action="/accounts/signup/" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" name="signup">Enviar</button>
+    </form>
+</div>
+{% endblock %}

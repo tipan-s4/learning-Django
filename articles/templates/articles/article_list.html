@@ -1,0 +1,19 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <div class="article-list">
+        <h2>Lista de artículos</h2>
+        <!-- Para imprimir datos es doble {} -->
+    {% for article in articles %}
+        <div class="article">
+            <!-- Creamos un enlace para mostrar los detalles de cada articulo -->
+            <h3><a href="{% url 'article_detail' pk=article.pk  %}">{{article.title}}</a></h3>
+            <p>{{article.snippet}}</p>
+            <div class="info">{{article.date.day}}/{{article.date.month}}/{{article.date.year}}</div>
+        </div>
+    {% endfor %}
+    </div>
+    <div class="msg">
+        <p><a href="/Authors/">Observar articulos por usuarios</a></p>
+    </div>
+{% endblock %}

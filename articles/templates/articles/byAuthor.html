@@ -1,0 +1,22 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    {% if articles %}
+    <div class="article-list">
+        <h2>Lista de artículos de {{ articles.0.author}}</h2>
+        <!-- Escoger el nombre del autor -->
+        <!-- if articles comprueba que sea mayor que 0 -->
+        {% for article in articles %}
+            <div class="article">
+                <h3><a href="{% url 'article_detail' pk=article.pk  %}">{{article.title}}</a></h3>
+                <p>{{article.snippet}}</p>
+                <div class="info">{{article.date.day}}/{{article.date.month}}/{{article.date.year}}</div>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="msg">
+        <p>No se han encontrado articulos</p>
+    </div>
+    {% endif %}
+{% endblock %}

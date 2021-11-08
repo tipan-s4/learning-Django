@@ -1,0 +1,57 @@
+{% load static %}
+  
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Djangonauts</title>
+        <!-- Llamamos a nuestros archivos estaticos -->
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h2><a href="{% url 'home' %}"><img src="{% static 'logo.png' %}"></a></h2>
+                <nav>
+                    <ul class="nav-links">
+                        <!-- Dependiendo de si el usuario ha iniciado sesion mostramos una informacion u otra -->
+                        {% if user.is_authenticated %}
+                            <li><a href="/create/"><p>Crear Articulo</p></a></li>
+                            <li><a href="{% url 'byAuthor' id=user.id %}"><p>Mis articulos</p></a></li>
+                            <li><a href="/accounts/profile/"><p>Perfil</p></a></li>
+                            <li><a href="/accounts/logout/"><p>Cerrar sesion</p></a></li>
+                        {% else %}
+                            <li><a href="/accounts/login/"><p>Iniciar sesion</p></a></li>
+                            <li><a href="/accounts/signup/"><p>Registrarse</p></a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </header>
+            <div class="content">
+                <!-- Creamos un bloque para indicar que ahi va mas contenido que usaran las paginas que hereden de esta -->
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </body>
+    <script>
+        // Creamos un javascript para confirmar si el usuario desea borrar un articulo
+    let del = document.querySelector('.delete')
+        if(del){
+            del.addEventListener('click',function(e){
+                let ask = confirm('¿Estas seguro?')
+                if(!ask){
+                    e.preventDefault()
+                }
+            })
+        }
+    </script>
+</html>
+
+<!-- Otra forma de enviar datos -->
+<!-- <li>
+    <form class="logout-link" action="/accounts/logout/" method="POST"> 
+        {% csrf_token %}
+        <button type="submit">Log out</button>
+    </form>
+</li> -->

@@ -1,0 +1,14 @@
+{% extends 'base_layout.html' %}
+
+{% block content%}
+<div class = "form">
+    <h3>¿Esta seguro de que desea eliminar su cuenta?</h3>
+    <form class="site-form" action="/accounts/delete/" method="POST">
+        {% csrf_token %}
+        <button type="submit" name="delete">Si</button>
+    </form>
+</div>
+<div class="msg">
+    <a href="/">Mejor no</a>
+</div>
+{% endblock %}

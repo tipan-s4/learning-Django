@@ -1,0 +1,442 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    /* height: 100%; */
+    overflow-x: hidden;
+    background-color:#fb9a9a;
+}
+
+/* Contenedor general */
+
+.container{
+    width: 100%;
+    height: 100%;   
+    background-color:#fb9a9a;
+    /* background-color:inherit; */
+    color: black;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+}
+
+a{ 
+    text-decoration: none; 
+    color: inherit;
+}
+
+.content{
+    width: 100%;  
+    margin: 1em 0;
+}
+
+.msg{
+    text-align: center;
+    margin: 4em 0 0;
+    color: #C26865;
+    font-weight: bold;
+}
+/* Cabezera */
+
+header{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, 1fr);
+    grid-template-areas: '. tit tit nav .';
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 0.4em rgba(0,0,0,0.2);
+    color:inherit;
+}
+
+header h2{
+    width: auto;
+    grid-area: tit;
+}
+
+header h2 a{
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/*Estilo del nav*/
+
+nav{
+    height: 100%;
+    grid-area: nav;
+    display: flex;
+    align-content: center;
+}
+
+header ul{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+}
+
+header li{
+    height: 100%;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    
+}
+
+nav a{
+    color: white;
+    height: 100%;
+    width: 100%;
+    padding: 0 1em;
+    display: flex;
+    align-items: center;
+}
+
+nav a:hover{
+ background-color: #F2C8C7;
+}
+
+
+
+/* Estilo de la pagina principal */
+
+.article-list{
+    width: 80%;
+    margin: 2em auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.article-list h2{
+    margin: 0.5em;
+    color: #C26865;
+}
+
+.article-list .article{
+    width: 100%;
+    margin: 1.2em;
+    padding: 0 0 1em 1em;
+    border-left: 5px solid #C26865;
+    border-radius: 2px;
+}
+
+.article-list .article h3{
+    color: #C26865;
+}
+
+.article-list .info{
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+
+
+
+
+
+/* Estilo de las paginas de los articulos */
+
+.article-detail{
+    width: 80%;
+    margin: 2em auto 0;
+}
+
+.article-detail .article{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, 1fr);
+    grid-template-rows: repeat(auto-fill,1fr);
+    grid-template-areas: 
+    'tit tit nimg nimg'
+    'txt txt nimg nimg'
+    'txt txt nimg nimg'
+    'author author date date';
+    align-content: space-around;
+}
+
+.article h2{
+    grid-area: tit;
+    width: 80%;
+}
+
+.article p{
+    grid-area: txt;
+    width: 90%;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.article .date{
+    grid-area: date;
+    font-weight: bold;
+    font-size: 0.7em;
+    text-align: end;
+    width: 40%;
+    /* border: 1px solid black; */
+}
+
+.article-detail .article img{
+    grid-area: nimg;
+    margin: 0;
+    max-width: 250px;
+    min-width: 50px;
+    border-radius: 5px;
+    box-shadow: 0.2em 0em 0.8em rgba(0,0,0,0.3);
+
+}
+
+.article-detail .author{
+    grid-area: author;
+    font-weight: bold;
+    font-size: 0.7em;
+
+}
+
+.article-detail a img{
+    margin: 2em 1em 0 0;
+    max-width: 30px;
+}
+
+.add-comment{
+    width: 80%;
+    margin: 4em auto 2em;
+}
+
+.add-comment input{
+    background-color: inherit;
+    padding: 5px;
+    border: none;
+    outline: none !important;
+    border-bottom: 1px solid grey;
+    width: 50%;
+    font-family: 'Montserrat', sans-serif;
+}
+.add-comment button{
+    margin: 0 1em;
+    background-color: #C26865;
+    color: white;
+    padding: 0.6em 0.8em;
+    border: none;
+    border-radius: 0.6em;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.comments{
+    width: 80%;
+    margin: 3em auto 1em;
+}
+
+.comment{
+    margin: 2em 0;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(auto-fill, 1fr);
+    grid-template-rows: repeat(auto-fill,1fr);
+    grid-template-areas: 
+    'img name date . . . . . . del'
+    'img text text text text text text text text del';
+    align-content: space-evenly;
+}
+
+.comment img{
+    grid-area: img;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+.comment .name{
+    grid-area: name;
+    margin: 0;
+    padding: 0;
+    font-size: 0.8em;
+}
+.comment .date{
+    grid-area: date;
+    margin: 0;
+    padding: 0;
+    font-size: 0.7em;
+    /* color: grey; */
+}
+.comment .text{
+    grid-area: text;
+    margin: 0;
+    padding: 0;
+    font-size: 0.9em;
+}
+
+.comment .delete{
+    grid-area: del;
+}
+
+
+
+
+/* Estilo de los formularios de registro e inicio de sesion */ 
+
+.form h2{
+    text-align: center;
+}
+
+.form h3{
+    text-align: center;
+}
+
+.form form{
+    padding: 2em 1em 0;
+    border-radius: 0.5em;
+    margin: 0 auto;
+    width: 35%;
+    text-align: center;
+}
+  
+.form input {
+      display: block;
+      width: 80%;
+      padding: 0.8em 1em;
+      margin: 0.2em 0;
+      display: inline-block;
+      border: 2px solid #FF8B88;
+      outline: none !important;
+      border-radius: 2em;
+      box-sizing: border-box;
+      background-color: white;
+      font-weight: bold;
+}
+  
+.form label{
+    width: 100%;
+    text-align: center;
+    font-size: 0.8em;
+    display: block;
+}
+  
+.form button{
+    margin: 0.4em auto;
+    display: block;
+    background-color: #C26865;
+    color: white;
+    padding: 0.6em 0.8em;
+    border: none;
+    border-radius: 0.6em;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0.1em 0.3em 0.3em rgba(0,0,0,0.2);
+} 
+
+.form .helptext{
+    color: #C26865;
+    font-weight: bold;
+    font-size: 0.7em;
+}
+
+.helptext ul {
+    list-style: none;
+    padding: 0;
+}
+
+.helptext li{
+    margin: 2px 0;
+}
+
+
+
+
+
+
+/* Estilo para el formulario de crear un articulo */
+
+.create-article{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.create-article h2,h3{
+    text-align: left;
+}
+
+.create-article input{
+    display: block;
+    padding: 0.6em 1em;
+    margin: 0.5em 0;
+    border: 2px solid #FF8B88;
+    outline: none !important;
+    border-radius: 0.4em;
+    background-color: white;
+    font-weight: bold;
+}
+
+.create-article label{
+    width: 100%;
+    font-size: 0.8em;
+    display: block;
+}
+
+.create-article textarea{
+    resize: none;
+    border-radius: 0.4em;
+    border: 2px solid #FF8B88;
+    outline: none !important;
+    padding: 0.6em 1em;
+}
+
+.create-article button{
+    margin: 0.4em 0;
+    background-color: #C26865;
+    color: white;
+    padding: 0.6em 0.8em;
+    border: none;
+    border-radius: 0.6em;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0.1em 0.3em 0.3em rgba(0,0,0,0.2);
+} 
+
+
+
+
+/* Estilo de authors.html */
+
+.author-list{
+    width: 80%;
+    margin: 2em auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.author-list .author{
+    color: #C26865;
+}
+
+
+
+/*Estilo de la tabla*/
+
+
+table{
+    height:15em;
+    width: 40em;
+    border-collapse: collapse;
+    padding: 0.8em 0.8em;
+    margin: 0 auto ;
+    font-size: 0.9em;
+}
+
+table td{
+    border-bottom: 1px solid black;
+    margin: 5px;
+    padding: 8px;
+}
+
+table a{
+    color: #C26865;
+    font-weight: bold;
+}
+
+table img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}

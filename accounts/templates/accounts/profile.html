@@ -1,0 +1,48 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+    {% block content %}
+        {% if profile %}
+        <div>
+            <table>
+                <tr>
+                    <th><h2>Información personal</h2></th>
+                </tr>
+                <tr>
+                    <td><h4>NOMBRE Y APELLIDOS</h4></td>
+                    <td><p>{{ profile.0.first_name }} {{ profile.0.last_name }}</p></td>
+                </tr>
+                <tr>
+                    <td><h4>NOMBRE DE USUARIO</h4></td>
+                    <td><p>{{ profile.0.username }}</p></td>
+                </tr>
+                <tr>
+                    <td><h4>CORREO ELECTRÓNICO<h4></td>
+                    <td><p>{{ profile.0.email }}</p></td>
+                </tr>        
+                <tr>
+                    <td><h4>Edad<h4></td>
+                    <td><p>{{ profile.0.age }}</p></td>
+                </tr>
+                {% if profile.0.image %}   
+                    <tr>
+                        <td><h4>IMAGEN DE PERFIL<h4></td>
+                        <td class="img"><img src="{{ profile.0.image.url }}"></td>
+                    </tr>
+                {% endif %} 
+                <tr>
+                    <td><p><a href="/accounts/edit/">Editar</a></p></td>
+                    <td><p><a href="/accounts/delete/">Borrar Cuenta</a></p></td>
+                </tr>  
+            </table>
+        </div>
+        {% else %}
+        <div class="create-article">
+            <h3>Añadir información</h3>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form}}
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+        {% endif %}
+    {% endblock %}

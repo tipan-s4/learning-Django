@@ -1,0 +1,51 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+{% block content %}
+    <div class="article-detail">
+        <!-- Para imprimir datos es doble {} -->
+        <div class="article">
+            <h2>{{article.title}}</h2>
+            <p>{{article.body}}</p>
+            <img src="{{ article.thumb.url }}">
+            <div class="date">{{article.date}}</div>
+            <div class="author">Autor: {{article.author}}</div>
+        </div>
+        <!-- Comprobamos que el usuario sea el mismo que el autor -->
+        {% if user == article.author %}
+        <a href="{% url 'article_edit' pk=article.pk %}"><img src="{% static 'edit.png' %}"></a>
+        <a class="delete" href="{% url 'article_delete' pk=article.pk %}"><img src="{% static 'delete.png' %}"></a>
+        {% endif %}
+    </div>
+    {% if user.is_authenticated %}
+    <div class="add-comment">
+        <form method="POST" action="{% url 'article_detail' pk=article.pk %}">
+            {% csrf_token %}
+            {{form.body}}
+            <!-- <input type="text" placeholder="Añade un comentario"> -->
+            <button type="submit">Añadir un comentario</button>
+        </form>
+    </div>
+    {% endif %}
+    {% if comments %}
+    <div class="comments">
+        {% for comment in comments %}
+            {% for profile in profiles %}
+                {% if comment.author == profile.username %}
+                <div class="comment">
+                    <img src="{{ profile.image.url }}">
+                    <p class="name">{{ comment.author }}</p>
+                    <p class="date">{{ comment.date }}</p>
+                    <p class="text">{{ comment.body }}</p>
+                    {% if user == comment.author %}
+                    <a class="delete" href="{% url 'comment_delete' pk=comment.pk %}"><img src="{% static 'delete.png' %}"></a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="msg">
+        <p><a href="/">Volver a la página anterior</a></p>
+    </div>
+{% endblock %}
